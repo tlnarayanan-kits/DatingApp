@@ -1,8 +1,10 @@
+using System.Diagnostics;
 using DatingApp.API.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Data
 {
+    
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options ) : base 
@@ -10,5 +12,10 @@ namespace DatingApp.API.Data
         {
         }
         public DbSet<Value> Values { get; set; }
+
+        public DbSet<User> Users { get; set; }
+
+
     }
 }
+
