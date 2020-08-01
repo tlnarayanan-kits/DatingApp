@@ -50,8 +50,11 @@ namespace DatingApp.API.Controllers
         }
 
          [HttpPost("login")]     
-        public async Task<IActionResult> Login(UserForLoginDto userForLoginDto){
+        public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
+        {
 
+
+           
             var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(),userForLoginDto.Password);
 
             if (userFromRepo == null)
@@ -72,9 +75,9 @@ namespace DatingApp.API.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
 
-             Subject = new ClaimsIdentity(claims),
-             Expires = DateTime.Now.AddDays(1),
-             SigningCredentials = creds
+            Subject = new ClaimsIdentity(claims),
+            Expires = DateTime.Now.AddDays(1),
+            SigningCredentials = creds
 
             };
 
@@ -85,8 +88,6 @@ namespace DatingApp.API.Controllers
                 token = tokenHandler.WriteToken(token)
             });
 
-
         }
-
     }
 }
