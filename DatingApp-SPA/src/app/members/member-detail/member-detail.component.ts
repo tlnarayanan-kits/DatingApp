@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { User } from 'src/app/_mdels/user';
 import { UserService } from 'src/app/_services/user.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from '@kolkov/ngx-gallery';
+import { bindNodeCallback } from 'rxjs';
 
 @Component({
   selector: 'app-member-detail',
@@ -10,22 +12,52 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./member-detail.component.css']
 })
 export class MemberDetailComponent implements OnInit {
-  constructor(private userService: UserService, private alertify: AlertifyService,
-              private route: ActivatedRoute) { }
 
   user: User;
-
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: NgxGalleryImage[];
+  constructor(private userService: UserService, private alertify: AlertifyService,
+              private route: ActivatedRoute) { }
   ngOnInit() {
-    this.loadUser();
+    this.route.data.subscribe(data => {
+      this.user = data['user'];
+    });
+
+    this.galleryOptions = [
+      {
+        width: '500px',
+        height: '500px',
+        imagePercent: 100,
+        thumbnailsColumns: 4,
+        imageAnimation: NgxGalleryAnimation.Slide,
+        preview: false
+      }
+    ];
+    this.galleryImages = this.getImages();
   }
 
   // tslint:disable-next-line: typedef
-  loadUser(){
+  getImages() {
+    const imageUrls = [];
+    for (const photo of this.user.photos) {
+      imageUrls.push({
+        small: photo.Url,
+        medium: photo.Url,
+        big: photo.Url,
+        description: photo.description
+      });
+    }
+    return imageUrls;
+  }
+
+  // tslint:disable-next-line: align
+    // tslint:disable-next-line: typedef
+  /* loadUser(){
     // tslint:disable-next-line: no-string-literal
     this.userService.getUser(+this.route.snapshot.params['id']).subscribe((user: User) => {
       this.user = user;
     }, error => {
       this.alertify.error(error);
     });
-  }
+  } */
 }
