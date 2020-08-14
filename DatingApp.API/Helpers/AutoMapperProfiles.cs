@@ -23,6 +23,7 @@ namespace DatingApp.API.Helpers
                 src.DateofBirth.CalculateAge()));
 
             CreateMap<Photo,PhotosForDetailedDto>();
+            CreateMap<UserForUpdateDto,User>();
             
         }
     }
