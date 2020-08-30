@@ -28,6 +28,7 @@
     "ng2-file-upload": "^1.4.0",
     "ngx-bootstrap": "^3.3.0",
     "ngx-gallery": "^5.10.0",
+    "ngx-timeago": "^1.0.4",
     "rxjs": "^6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

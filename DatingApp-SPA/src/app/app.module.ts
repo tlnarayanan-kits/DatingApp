@@ -8,6 +8,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { RouterModule } from '@angular/router' ;
 import { JwtModule } from '@auth0/angular-jwt';
+import { TimeagoModule } from 'ngx-timeago';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
@@ -64,6 +65,7 @@ export function tokenGetter(){
       TabsModule.forRoot(),
       NgxGalleryModule,
       FileUploadModule,
+      TimeagoModule.forRoot(),
       JwtModule.forRoot({
          config: {
             // tslint:disable-next-line: object-literal-shorthand
